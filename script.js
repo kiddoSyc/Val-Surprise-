@@ -1,6 +1,5 @@
-Updated `script.js` to use a dedicated **Play Music** button instead of trying autoplay, so it will always work even on shared links:
+// Full fixed `script.js` with working Create button + Play Music button
 
-```javascript
 // Generate floating hearts
 for(let i=0;i<28;i++){
   const h=document.createElement('div');
@@ -21,7 +20,7 @@ const fromText = document.getElementById('fromText');
 const music = document.getElementById('music');
 const copyBtn = document.getElementById('copyBtn');
 
-// Create Play Music button dynamically
+// Create Play Music button once
 const playBtn = document.createElement('button');
 playBtn.innerText = '🎵 Play Music';
 playBtn.style.marginTop = '15px';
@@ -73,7 +72,7 @@ function loadMessageFromURL() {
     showName.innerText = `${toName} 💖`;
     fromText.innerText = `— With love, ${fromName} 💌`;
     typeEffect(generateMessage(toName), typedText, 35);
-    playBtn.style.display = 'inline-block'; // Show play button for shared link
+    playBtn.style.display = 'inline-block';
   }
 }
 
@@ -95,7 +94,6 @@ createBtn.addEventListener('click', () => {
 
   playBtn.style.display = 'inline-block';
 
-  // Copy link
   copyBtn.onclick = () => {
     navigator.clipboard.writeText(url).then(()=>{
       alert('Link copied! Share it with your Valentine 💌');
@@ -103,13 +101,12 @@ createBtn.addEventListener('click', () => {
   };
 });
 
-// Play music when play button is clicked
+// Play music when Play button is clicked
 playBtn.addEventListener('click', () => {
   music.volume = 0.5;
   music.play();
   playBtn.style.display = 'none';
 });
 
-// Load message if URL has params
+// Load from URL on page load
 window.onload = loadMessageFromURL;
-```
