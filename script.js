@@ -1,3 +1,6 @@
+Updated full `script.js` to ensure music plays properly with fallback button if autoplay is blocked:
+
+```javascript
 // Generate floating hearts
 for(let i=0;i<28;i++){
   const h=document.createElement('div');
@@ -63,9 +66,23 @@ function loadMessageFromURL() {
     showName.innerText = `${toName} 💖`;
     fromText.innerText = `— With love, ${fromName} 💌`;
     typeEffect(generateMessage(toName), typedText, 35);
-    music.volume = 0.5;
-    music.play().catch(()=>console.log('Autoplay blocked'));
+    playMusic();
   }
+}
+
+// Safe music play with fallback button
+function playMusic() {
+  music.volume = 0.5;
+  music.play().catch(() => {
+    const playBtn = document.createElement('button');
+    playBtn.innerText = '🎵 Play Music';
+    playBtn.style.marginTop = '15px';
+    messageCard.appendChild(playBtn);
+    playBtn.onclick = () => {
+      music.play();
+      playBtn.remove();
+    };
+  });
 }
 
 // On click create button
@@ -84,8 +101,7 @@ createBtn.addEventListener('click', () => {
 
   typeEffect(generateMessage(toName), typedText, 35);
 
-  music.volume = 0.5;
-  music.play().catch(()=>console.log('Autoplay blocked'));
+  playMusic();
 
   copyBtn.onclick = () => {
     navigator.clipboard.writeText(url).then(()=>{
