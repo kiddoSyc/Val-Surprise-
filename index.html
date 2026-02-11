@@ -1,223 +1,83 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Valentine Message 💖</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: #fff;
-    }
-
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      bottom: -20px;
-      width: 18px;
-      height: 18px;
-      background: rgba(255,255,255,0.7);
-      transform: rotate(45deg);
-      animation: float linear infinite;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 50%;
-    }
-
-    .heart::before { top: -9px; left: 0; }
-    .heart::after { left: -9px; top: 0; }
-
-    @keyframes float {
-      from { transform: translateY(0) rotate(45deg); opacity: 1; }
-      to { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
-    }
-
-    .card {
-      background: rgba(255,255,255,0.18);
-      backdrop-filter: blur(14px);
-      border-radius: 26px;
-      padding: 40px 30px;
-      width: 90%;
-      max-width: 440px;
-      text-align: center;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-      animation: pop 1.2s ease;
-    }
-
-    @keyframes pop {
-      from { transform: scale(0.85); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.2rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 14px;
-      border-radius: 30px;
-      border: none;
-      outline: none;
-      text-align: center;
-      font-size: 1rem;
-      margin-bottom: 15px;
-    }
-
-    button {
-      background: #fff;
-      color: #ff4d6d;
-      border: none;
-      padding: 14px 35px;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    button:hover { transform: scale(1.08); }
-
-    .message { display: none; animation: fadeIn 1.5s ease; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .typing {
-      border-right: 2px solid #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: blink 0.7s infinite;
-    }
-
-    @keyframes blink { 50% { border-color: transparent; } }
-
-    .controls {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    audio { display: none; }
-  </style></head>
-<body>  <script>
-    for (let i = 0; i < 28; i++) {
-      const h = document.createElement('div');
-      h.className = 'heart';
-      h.style.left = Math.random() * 100 + 'vw';
-      h.style.animationDuration = 6 + Math.random() * 6 + 's';
-      document.body.appendChild(h);
-    }
-  </script>  <div class="card">
-    <h1>Valentine 💖</h1>
-    <p>Create a beautiful Valentine message made just for one special person ✨</p><input id="toName" placeholder="Your partner's name" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Valentine 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#ff758c,#ff7eb3);min-height:100vh;display:flex;justify-content:center;align-items:center;overflow:hidden;color:#fff;}
+.heart{position:absolute;bottom:-20px;width:18px;height:18px;background:rgba(255,255,255,0.7);transform:rotate(45deg);animation:float linear infinite;}
+.heart::before,.heart::after{content:'';position:absolute;width:18px;height:18px;background:rgba(255,255,255,0.7);border-radius:50%;}
+.heart::before{top:-9px;left:0;}
+.heart::after{left:-9px;top:0;}
+@keyframes float{from{transform:translateY(0) rotate(45deg);opacity:1;}to{transform:translateY(-110vh) rotate(45deg);opacity:0;}}
+.card{background:rgba(255,255,255,0.18);backdrop-filter:blur(14px);border-radius:26px;padding:40px 30px;width:90%;max-width:440px;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,0.25);animation:pop 1.2s ease;position:relative;}
+@keyframes pop{from{transform:scale(0.85);opacity:0;}to{transform:scale(1);opacity:1;}}
+h1{font-family:'Great Vibes',cursive;font-size:3.2rem;margin-bottom:10px;}
+p{font-size:1rem;line-height:1.7;margin-bottom:20px;}
+input,select{width:100%;padding:14px;border-radius:30px;border:none;outline:none;text-align:center;font-size:1rem;margin-bottom:15px;}
+button{background:#fff;color:#ff4d6d;border:none;padding:14px 35px;border-radius:30px;font-size:1rem;cursor:pointer;transition:0.3s ease;}
+button:hover{transform:scale(1.08);}
+.message{display:none;animation:fadeIn 1.5s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.typing{border-right:2px solid #fff;white-space:nowrap;overflow:hidden;animation:blink 0.7s infinite;}
+@keyframes blink{50%{border-color:transparent;}}
+.controls{margin-top:15px;display:flex;justify-content:center;gap:10px;}
+audio{display:none;}
+</style>
+</head>
+<body>
+<script>
+for(let i=0;i<28;i++){const h=document.createElement('div');h.className='heart';h.style.left=Math.random()*100+'vw';h.style.animationDuration=6+Math.random()*6+'s';document.body.appendChild(h);}
+</script>
+<div class="card" id="inputCard">
+<h1>💌 Create Your Valentine</h1>
+<p>Enter your special someone's name and create a magical message ✨</p>
+<input id="toName" placeholder="Their name" />
 <input id="fromName" placeholder="Your name" />
-
 <select id="style">
-  <option value="romantic">Romantic 💘</option>
-  <option value="sweet">Sweet 💕</option>
-  <option value="funny">Funny 😄</option>
+<option value="romantic">Romantic 💘</option>
+<option value="sweet">Sweet 💕</option>
+<option value="funny">Funny 😄</option>
 </select>
-
-<button onclick="createVal()">Create My Valentine ❤️</button>
-
-<div class="message" id="message">
-  <h1 id="showName"></h1>
-  <p id="typedText" class="typing"></p>
-  <p style="margin-top:15px;" id="fromText"></p>
-
-  <div class="controls">
-    <button onclick="toggleMusic()">🎵</button>
-    <button onclick="shareLink()">📩 Share</button>
-  </div>
+<button onclick="createVal()">Create 💖</button>
 </div>
-
-  </div>  <audio id="music" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f7e43c2b2.mp3?filename=romantic-love-112191.mp3" type="audio/mpeg">
-  </audio>  <script>
-    const messages = {
-      romantic: name => `Dear ${name}, every heartbeat of mine whispers your name. You are my safe place, my dream, and my forever. Loving you is the most beautiful thing I have ever done.` ,
-      sweet: name => `${name}, you bring warmth into my life in ways words can never fully explain. Thank you for being you, for being mine, and for making love feel this gentle and real.` ,
-      funny: name => `${name}, I was going to write something serious, but then I remembered how cute you look when you smile. So yeah… I like you a lot. Like, a lot a lot.`
-    };
-
-    function typeText(text, el) {
-      el.innerHTML = '';
-      let i = 0;
-      const interval = setInterval(() => {
-        el.innerHTML += text.charAt(i);
-        i++;
-        if (i >= text.length) clearInterval(interval);
-      }, 40);
-    }
-
-    function createVal() {
-      const to = document.getElementById('toName').value.trim();
-      const from = document.getElementById('fromName').value.trim();
-      const style = document.getElementById('style').value;
-
-      if (!to || !from) return alert('Please fill all names ❤️');
-
-      document.getElementById('showName').innerText = to + ' 💖';
-      document.getElementById('fromText').innerText = `— With love, ${from} 💌`;
-
-      const msg = messages[style](to);
-      typeText(msg, document.getElementById('typedText'));
-
-      document.querySelectorAll('input, select, button')[0].style.display = 'none';
-      document.querySelectorAll('input, select, button')[1].style.display = 'none';
-      document.querySelectorAll('input, select, button')[2].style.display = 'none';
-      document.querySelectorAll('input, select, button')[3].style.display = 'none';
-
-      document.getElementById('message').style.display = 'block';
-
-      const music = document.getElementById('music');
-      music.volume = 0.4;
-      music.play();
-
-      history.replaceState(null, '', `?to=${encodeURIComponent(to)}&from=${encodeURIComponent(from)}&style=${style}`);
-    }
-
-    function toggleMusic() {
-      const music = document.getElementById('music');
-      music.paused ? music.play() : music.pause();
-    }
-
-    function shareLink() {
-      navigator.share ? navigator.share({ title: 'A Valentine For You 💖', url: location.href }) : alert('Copy the link and share ❤️');
-    }
-
-    window.onload = () => {
-      const params = new URLSearchParams(location.search);
-      if (params.get('to') && params.get('from')) {
-        document.getElementById('toName').value = params.get('to');
-        document.getElementById('fromName').value = params.get('from');
-        document.getElementById('style').value = params.get('style') || 'romantic';
-        createVal();
-      }
-    };
-  </script></body>
+<div class="card message" id="messageCard">
+<h1 id="showName"></h1>
+<p id="typedText" class="typing"></p>
+<p style="margin-top:15px;" id="fromText"></p>
+</div>
+<audio id="music" autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f7e43c2b2.mp3?filename=romantic-love-112191.mp3" type="audio/mpeg">
+</audio>
+<script>
+const messages={
+romantic:name=>`Dear ${name}, every heartbeat of mine whispers your name. You are my safe place, my dream, and my forever. Loving you is the most beautiful thing I have ever done.`,
+sweet:name=>`${name}, you bring warmth into my life in ways words can never fully explain. Thank you for being you, for being mine, and for making love feel this gentle and real.`,
+funny:name=>`${name}, I was going to write something serious, but then I remembered how cute you look when you smile. So yeah… I like you a lot. Like, a lot a lot.`};
+function typeText(text,el){el.innerHTML='';let i=0;const interval=setInterval(()=>{el.innerHTML+=text.charAt(i);i++;if(i>=text.length)clearInterval(interval);},40);}
+function createVal(){
+const to=document.getElementById('toName').value.trim();
+const from=document.getElementById('fromName').value.trim();
+const style=document.getElementById('style').value;
+if(!to||!from)return alert('Please fill all names ❤️');
+document.getElementById('showName').innerText=to+' 💖';
+document.getElementById('fromText').innerText=`— With love, ${from} 💌`;
+const msg=messages[style](to);
+typeText(msg,document.getElementById('typedText'));
+document.getElementById('inputCard').style.display='none';
+document.getElementById('messageCard').style.display='block';
+}
+window.onload=()=>{
+const params=new URLSearchParams(location.search);
+if(params.get('to')&&params.get('from')){
+document.getElementById('toName').value=params.get('to');
+document.getElementById('fromName').value=params.get('from');
+document.getElementById('style').value=params.get('style')||'romantic';
+createVal();
+}
+};
+</script>
+</body>
 </html>
