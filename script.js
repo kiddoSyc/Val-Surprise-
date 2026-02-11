@@ -1,4 +1,4 @@
-Updated full `script.js` to ensure music plays properly with fallback button if autoplay is blocked:
+Updated `script.js` to use a dedicated **Play Music** button instead of trying autoplay, so it will always work even on shared links:
 
 ```javascript
 // Generate floating hearts
@@ -20,6 +20,13 @@ const typedText = document.getElementById('typedText');
 const fromText = document.getElementById('fromText');
 const music = document.getElementById('music');
 const copyBtn = document.getElementById('copyBtn');
+
+// Create Play Music button dynamically
+const playBtn = document.createElement('button');
+playBtn.innerText = '🎵 Play Music';
+playBtn.style.marginTop = '15px';
+playBtn.style.display = 'none';
+messageCard.appendChild(playBtn);
 
 // Array of dynamic romantic phrases
 const phrases = [
@@ -66,26 +73,11 @@ function loadMessageFromURL() {
     showName.innerText = `${toName} 💖`;
     fromText.innerText = `— With love, ${fromName} 💌`;
     typeEffect(generateMessage(toName), typedText, 35);
-    playMusic();
+    playBtn.style.display = 'inline-block'; // Show play button for shared link
   }
 }
 
-// Safe music play with fallback button
-function playMusic() {
-  music.volume = 0.5;
-  music.play().catch(() => {
-    const playBtn = document.createElement('button');
-    playBtn.innerText = '🎵 Play Music';
-    playBtn.style.marginTop = '15px';
-    messageCard.appendChild(playBtn);
-    playBtn.onclick = () => {
-      music.play();
-      playBtn.remove();
-    };
-  });
-}
-
-// On click create button
+// Click Create button
 createBtn.addEventListener('click', () => {
   const toName = toInput.value.trim();
   const fromName = fromInput.value.trim();
@@ -101,8 +93,9 @@ createBtn.addEventListener('click', () => {
 
   typeEffect(generateMessage(toName), typedText, 35);
 
-  playMusic();
+  playBtn.style.display = 'inline-block';
 
+  // Copy link
   copyBtn.onclick = () => {
     navigator.clipboard.writeText(url).then(()=>{
       alert('Link copied! Share it with your Valentine 💌');
@@ -110,5 +103,13 @@ createBtn.addEventListener('click', () => {
   };
 });
 
-// Load from URL on page load
+// Play music when play button is clicked
+playBtn.addEventListener('click', () => {
+  music.volume = 0.5;
+  music.play();
+  playBtn.style.display = 'none';
+});
+
+// Load message if URL has params
 window.onload = loadMessageFromURL;
+```
