@@ -16,17 +16,29 @@ const showName = document.getElementById('showName');
 const typedText = document.getElementById('typedText');
 const fromText = document.getElementById('fromText');
 const music = document.getElementById('music');
+const copyBtn = document.getElementById('copyBtn');
 
-// Long Romantic + Sweet message
-const messageText = (toName) => 
-`My dearest ${toName}, from the moment you entered my life, everything changed. 
-Your smile lights up my darkest days, your laugh fills my heart with joy, 
-and your love gives me a strength I never knew I had. 
-I promise to cherish every moment with you, to love you endlessly, 
-and to make your heart feel as safe and cherished as you make mine. 
-You make every day brighter, every moment sweeter, and I can't imagine my life without you.`;
+// Array of dynamic romantic phrases
+const phrases = [
+  'Your smile lights up my darkest days 🌙✨',
+  'Every moment with you is a treasure 💖',
+  'Your laugh fills my heart with joy 😍',
+  'I promise to love you endlessly 💌',
+  'You make every day brighter and sweeter 🍬',
+  'Being with you feels like a dream come true 🌸'
+];
 
-function typeEffect(text, element, speed=30) {
+// Generate unique message
+function generateMessage(toName) {
+  let message = `My dearest ${toName}, from the moment you entered my life, everything changed.\n`;
+  const shuffled = phrases.sort(() => 0.5 - Math.random());
+  message += shuffled.slice(0,3).join('\n') + '\n';
+  message += 'I can’t imagine my life without you 💖';
+  return message;
+}
+
+// Typing effect
+function typeEffect(text, element, speed=35) {
   element.innerHTML='';
   let i=0;
   const interval=setInterval(()=>{
@@ -36,10 +48,33 @@ function typeEffect(text, element, speed=30) {
   }, speed);
 }
 
+// Read URL params
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+function loadMessageFromURL() {
+  const toName = getQueryParam('to');
+  const fromName = getQueryParam('from');
+  if(toName && fromName){
+    inputCard.style.display='none';
+    messageCard.style.display='block';
+    showName.innerText = `${toName} 💖`;
+    fromText.innerText = `— With love, ${fromName} 💌`;
+    typeEffect(generateMessage(toName), typedText, 35);
+    music.volume = 0.5;
+    music.play().catch(()=>console.log('Autoplay blocked'));
+  }
+}
+
+// On click create button
 createBtn.addEventListener('click', () => {
   const toName = toInput.value.trim();
   const fromName = fromInput.value.trim();
   if(!toName || !fromName) return alert('Please fill all names ❤️');
+
+  const url = `${window.location.origin}${window.location.pathname}?to=${encodeURIComponent(toName)}&from=${encodeURIComponent(fromName)}`;
 
   inputCard.style.display='none';
   messageCard.style.display='block';
@@ -47,9 +82,17 @@ createBtn.addEventListener('click', () => {
   showName.innerText = `${toName} 💖`;
   fromText.innerText = `— With love, ${fromName} 💌`;
 
-  typeEffect(messageText(toName), typedText, 35);
+  typeEffect(generateMessage(toName), typedText, 35);
 
-  // Play music after first click
   music.volume = 0.5;
-  music.play().catch(()=>console.log('Autoplay blocked, user interaction required.'));
+  music.play().catch(()=>console.log('Autoplay blocked'));
+
+  copyBtn.onclick = () => {
+    navigator.clipboard.writeText(url).then(()=>{
+      alert('Link copied! Share it with your Valentine 💌');
+    });
+  };
 });
+
+// Load from URL on page load
+window.onload = loadMessageFromURL;
