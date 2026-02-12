@@ -96,3 +96,18 @@ button:hover {
   from { transform:translateY(0) rotate(45deg); opacity:1; }
   to { transform:translateY(-110vh) rotate(45deg); opacity:0; }
 }
+
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  resize: none;
+  background: rgba(255,255,255,0.3);
+  color: #333;
+}
